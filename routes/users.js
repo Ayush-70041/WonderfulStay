@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const plm = require("passport-local-mongoose");
 
-const mongoURI = 'mongodb+srv://Ayush101:Ayush70041Anand@wonderfulstay.wmzzn.mongodb.net/?retryWrites=true&w=majority&appName=WonderfulStay';
+const mongoURI = 'mongodb+srv://WonderfulStay:WonderfulStay_DB@database.l0nuk1b.mongodb.net/?retryWrites=true&w=majority&appName=DataBase';
 
 mongoose.connect(mongoURI).then(() => {
   console.log(`Connection Successful`);
