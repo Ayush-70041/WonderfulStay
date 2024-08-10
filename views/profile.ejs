@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wonderful Stay</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e4e3e3;
+        color: #000; /* Default text color for better readability */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation Bar Styles */
+      .navbar {
+        background-color: #000; /* Dark background */
+        padding: 0 15px;
+      }
+
+      .navbar-brand {
+        color: #ffffff; /* White color */
+        font-size: 2.5rem; /* Responsive font size */
+      }
+
+      .navbar-nav {
+        margin-left: auto; /* Align nav items to the right */
+      }
+
+      .navbar-nav .nav-link {
+        color: #797979;
+        font-size: 1rem; /* Responsive font size */
+        transition: color 0.3s; /* Smooth color transition */
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: #838080; /* Light grey on hover */
+      }
+
+      .navbar-toggler {
+        border: none; /* Remove border */
+      }
+
+      .navbar-toggler-icon {
+        background-color: transparent; /* Remove default background */
+      }
+
+      .navbar-toggler-icon::before {
+        content: "\f0c9"; /* Unicode for hamburger icon */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: #fff;
+        font-size: 1.5rem;
+      }
+
+      .navbar-collapse {
+        justify-content: flex-end; /* Align menu items to the right */
+        background-color: rgba(0, 0, 0, 0.2); /* Translucent black background */
+      }
+
+      .navbar-collapse .navbar-nav {
+        align-items: center; /* Align nav items to the right */
+      }
+      /* Carousel Styles */
+      .carousel-container {
+        position: relative; /* Ensure that the caption is positioned relative to this container */
+        margin-top: 20px;
+      }
+
+      .carousel {
+        height: 50vh; /* Full viewport height */
+      }
+
+      .carousel-item img {
+        height: 40vh; /* Full viewport height */
+        object-fit: cover; /* Cover the entire carousel area */
+      }
+
+      /* Center the carousel caption */
+      .carousel-caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.7
+        ); /* Semi-transparent black background */
+        color: #fff; /* White text color */
+        text-align: center;
+        padding: 20px; /* Add padding for better spacing */
+        border-radius: 8px;
+        width: 80%; /* Adjust width as needed */
+        max-width: 90%; /* Maximum width to adapt to smaller screens */
+        box-sizing: border-box; /* Include padding in the width calculation */
+        overflow: hidden; /* Hide overflow to keep text within bounds */
+        display: flex; /* Use flexbox for centering text */
+        flex-direction: column; /* Arrange text elements in a column */
+        justify-content: center; /* Center text vertically */
+      }
+
+      /* Style for heading and paragraph within the caption */
+      .carousel-caption h2,
+      .carousel-caption p {
+        margin: 0;
+        padding: 10px 0; /* Add padding for better spacing */
+        font-size: 1.1rem; /* Font size for the caption text */
+        overflow-wrap: break-word; /* Wrap long words to prevent overflow */
+        max-width: 100%; /* Ensure text does not exceed the width of the caption */
+      }
+      .carousel-caption h2 {
+        margin: 0;
+        padding: 10px 0; /* Add padding for better spacing */
+        font-size: 1.4rem; /* Font size for the caption text */
+        overflow-wrap: break-word; /* Wrap long words to prevent overflow */
+        max-width: 100%; /* Ensure text does not exceed the width of the caption */
+      }
+      /* Responsive font sizes for captions */
+      @media (max-width: 768px) {
+        .carousel-caption h2 {
+          font-size: 1rem; /* Adjust font size for smaller screens */
+        }
+
+        .carousel-caption p {
+          font-size: 0.9rem; /* Adjust font size for smaller screens */
+        }
+      }
+
+      @media (max-width: 576px) {
+        .carousel-caption h2 {
+          font-size: 0.9rem; /* Further adjust font size for very small screens */
+        }
+
+        .carousel-caption p {
+          font-size: 0.8rem; /* Further adjust font size for very small screens */
+        }
+      }
+
+      @media (max-height: 575px) {
+        .carousel-caption h2 {
+          font-size: 0.8rem; /* Adjust font size for short screens */
+        }
+
+        .carousel-caption p {
+          font-size: 0.7rem; /* Adjust font size for short screens */
+        }
+      }
+
+      /* Card Styles */
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+        color: #000; /* Default card text color */
+      }
+
+      .card {
+        width: 250px;
+        background-color: #f2f2f2;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .card img {
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .card-content {
+        padding: 15px;
+      }
+
+      .card-content h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        color: #000000;
+      }
+
+      .card-content p {
+        margin: 10px 0;
+        color: #000000;
+      }
+
+      .quantity {
+        display: flex;
+        align-items: center;
+      }
+
+      .quantity input {
+        width: 70%;
+        padding: 5px;
+        margin-right: 10px;
+      }
+
+      .quantity button {
+        background-color: #eba309;
+        color: #000000; /* White text */
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        text-decoration: none;
+      }
+
+      .quantity button:hover {
+        background-color: #a6760e;
+      }
+      /* Client Section Styles */
+      .client {
+        background-color: rgb(174, 174, 174);
+        color: #000;
+        padding: 2rem 0; /* Add some padding around the section */
+        text-align: center;
+      }
+
+      .client__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .client__header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .client__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem; /* Space between the cards */
+      }
+
+      .client__card {
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .client__card img {
+        max-width: 80px;
+        margin: 0 auto 1rem; /* Center the image and add space below it */
+        border-radius: 50%;
+      }
+
+      .client__card p {
+        color: #000;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @media (max-width: 768px) {
+        .navbar-brand {
+          font-size: 2rem; /* Smaller font size on mobile */
+        }
+
+        .navbar-nav .nav-link {
+          font-size: 0.9rem; /* Smaller font size on mobile */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a style="color: white" class="navbar-brand" href="#"
+          >Wonderful<span style="color: #14faeb">Stay</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a style="color: white" class="nav-link" href="/profile">Home</a>
+            </li>
+            <li class="nav-item">
+              <a style="color: white" class="nav-link" href="/abouts">About</a>
+            </li>
+            <li class="nav-item">
+              <a style="color: white" class="nav-link" href="/contacts"
+                >Contact</a
+              >
+            </li>
+            <li class="nav-item">
+              <a style="color: white" class="nav-link" href="/cartscreen"
+                ><i class="fas fa-bed"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a style="color: white" class="nav-link" href="/logout"
+                ><i class="fas fa-sign-out-alt"></i> Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Bootstrap Carousel -->
+    <div
+      id="carouselExampleSlidesOnly"
+      class="carousel slide"
+      data-ride="carousel"
+      data-interval="3000"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="images/images (1).jpeg"
+            class="d-block w-100"
+            alt="Food Carousel 1"
+          />
+          <div class="carousel-caption">
+            <h2>Our Amazing hotel has some of the best rooms on earth.</h2>
+            <p>World's Largest Brand</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            src="images/16237089e6422379404585088e556f65.jpg"
+            class="d-block w-100"
+            alt="Food Carousel 2"
+          />
+          <div class="carousel-caption">
+            <h2>Luxury Hotel And Best Resort</h2>
+            <p>World's Largest Brand</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1 style="text-align: center; color: #000">Our Rooms</h1>
+    </div>
+    <!-- Eight Cards with Food Images, Price, and Quantity Button -->
+    <div class="container card-container">
+      <!-- Card 1 -->
+      <form id="room1Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room1.jpg" alt="Single" />
+        <div class="card-content">
+          <h2>Single</h2>
+          <p>Price per Night: $30</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="Single" />
+            <input type="hidden" name="price" value="30" />
+            <input
+              id="quantityRoom1"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room1.jpg" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Card 2 -->
+      <form id="room2Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room2.jpg" alt="Double" />
+        <div class="card-content">
+          <h2>Double</h2>
+          <p>Price per Night: $44</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="Double" />
+            <input type="hidden" name="price" value="44" />
+            <input
+              id="quantityRoom2"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room2.jpg" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Card 3 -->
+      <form id="room3Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room3.jpg" alt="King" />
+        <div class="card-content">
+          <h2>King</h2>
+          <p>Price per Night: $52</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="King" />
+            <input type="hidden" name="price" value="52" />
+            <input
+              id="quantityRoom3"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room3.jpg" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Card 4 -->
+      <form id="room4Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room4.jpg" alt="Queen" />
+        <div class="card-content">
+          <h2>Queen</h2>
+          <p>Price per Night: $48</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="Queen" />
+            <input type="hidden" name="price" value="48" />
+            <input
+              id="quantityRoom4"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room4.jpg" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Card 5 -->
+      <form id="room5Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room5.avif" alt="Twin" />
+        <div class="card-content">
+          <h2>Twin</h2>
+          <p>Price per Night: $46</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="Twin" />
+            <input type="hidden" name="price" value="46" />
+            <input
+              id="quantityRoom5"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room5.avif" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Card 6 -->
+      <form id="room6Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room6.avif" alt="Studio" />
+        <div class="card-content">
+          <h2>Studio</h2>
+          <p>Price per Night: $27</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="Studio" />
+            <input type="hidden" name="price" value="27" />
+            <input
+              id="quantityRoom6"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room6.avif" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Card 7 -->
+      <form id="room7Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room7.avif" alt="Suite" />
+        <div class="card-content">
+          <h2>Suite</h2>
+          <p>Price per Night: $32</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="Suite" />
+            <input type="hidden" name="price" value="32" />
+            <input
+              id="quantityRoom7"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room7.avif" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Card 8 -->
+      <form id="room8Form" class="card" action="/addtocart" method="POST">
+        <img src="images/room8.jpg" alt="Cabana" />
+        <div class="card-content">
+          <h2>Cabana</h2>
+          <p>Price per Night: $60</p>
+          <div class="quantity">
+            <input type="hidden" name="name" value="Cabana" />
+            <input type="hidden" name="price" value="60" />
+            <input
+              id="quantityRoom8"
+              type="number"
+              name="quantity"
+              placeholder="Room Count"
+              min="1"
+            />
+            <input type="hidden" name="image" value="images/room8.jpg" />
+            <button type="submit">Book</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <section class="client">
+      <div class="section__container client__container">
+        <h2 class="section__header">What our client say</h2>
+        <br />
+        <div class="client__grid">
+          <div class="client__card">
+            <img src="images/client-1.jpg" alt="client" />
+            <p>
+              The booking process was seamless, and the confirmation was
+              instant. I highly recommend WonderfulStay for hassle-free hotel
+              bookings.
+            </p>
+          </div>
+          <div class="client__card">
+            <img src="images/client-2.jpg" alt="client" />
+            <p>
+              The website provided detailed information about hotel, including
+              amenities, photos, which helped me make an informed decision.
+            </p>
+          </div>
+          <div class="client__card">
+            <img src="images/client-3.jpg" alt="client" />
+            <p>
+              I was able to book a room within minutes, and the hotel exceeded
+              my expectations. I appreciate WonderfulStay's efficiency and
+              reliability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br />
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Wonderful Stay. All rights reserved.</p>
+      </div>
+    </footer>
+    <!-- <script src="/javascripts/profile.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all forms
+        const forms = document.querySelectorAll("form");
+
+        // Loop through each form and attach submit event listener
+        forms.forEach((form) => {
+          form.addEventListener("submit", function (event) {
+            // Get the quantity input element for the current form
+            const quantityInput = form.querySelector('input[name="quantity"]');
+
+            // Check if the quantity input is empty or has a value of 0
+            if (!quantityInput.value || quantityInput.value <= 0) {
+              // Prevent form submission
+              event.preventDefault();
+
+              // Show alert message
+              alert("Please select a room count before booking.");
+
+              // Optionally, you can also focus the quantity input
+              quantityInput.focus();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
