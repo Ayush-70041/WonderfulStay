@@ -3,13 +3,13 @@ var router = express.Router();
 const userModel = require('./users');
 const postModel = require('./posts');
 const passport = require('passport');
-const upload = require("./multer");
+const upload = require('./multer');
 const cartItem = require("./cart");
 const mongoose = require('mongoose');
-const localStrategy = require("passport-local");
+const localStrategy = require('passport-local');
 passport.use(new localStrategy(userModel.authenticate()));
-
-
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
