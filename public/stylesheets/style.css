@@ -97,14 +97,14 @@ h4 {
   margin: 10px 0;
 }
 
-.fbk, .ggl {
+.github, .ggl {
   background-color: #828080;
   margin: 5px 0;
   font-size: 16px;
   font-weight: 700;
 }
 
-.fbk a, .ggl a {
+.github a, .ggl a {
   text-decoration: none;
   color: rgb(0, 0, 0);
   font-weight: 600;
@@ -112,8 +112,8 @@ h4 {
   letter-spacing: 1px;
 }
 
-.fbk:hover, .ggl:hover {
-  background-color: #535151;
+.github:hover, .ggl:hover {
+  background-color: #4c4949;
 }
 
 footer p {
@@ -231,3 +231,5 @@ hr {
     padding: 8px 16px;
   }
 }
+
+
